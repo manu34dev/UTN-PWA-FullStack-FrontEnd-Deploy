@@ -7,7 +7,7 @@ import ResetPassword from './Screens/ResetPassword/ResetPassword'
 import Home from './Screens/Home/Home'
 import CreateProduct from './Screens/CreateProduct/CreateProduct'
 import ProductsScreen from './Screens/ProductsScreen/ProductsScreen'
-import DeleteProduct from './Screens/DeleteProduct/deleteProduct'
+import DeleteProduct from './Screens/DeleteProduct/DeleteProduct'
 import UpdateProduct from './Screens/UpdateProduct/UpdateProduct'
 import Verify from './Screens/Verify/Verify'
 
