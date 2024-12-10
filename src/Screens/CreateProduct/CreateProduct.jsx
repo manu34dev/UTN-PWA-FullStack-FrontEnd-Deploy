@@ -20,7 +20,7 @@ const CreateProduct = () => {
         }
         const formValuesObject = extractFormData(form_fields, form_values)
         formValuesObject.image = image
-        const response = await POST ('http://localhost:3000/api/products', {
+        const response = await POST ('https://utn-pwa-full-stack-front-end-deploy-8nue.vercel.app/api/products', {
             headers: getauthenticatedHeaders(),
             body: JSON.stringify(formValuesObject)
         })

@@ -20,7 +20,7 @@ const UpdateProduct = () => {
         }
         const formValuesObject = extractFormData(form_fields, form_values)
         formValuesObject.image = image
-        fetch(`http://localhost:3000/api/products/${product_id}`, {
+        fetch(`https://utn-pwa-full-stack-front-end-deploy-8nue.vercel.app/api/products/${product_id}`, {
             method: 'PUT',
             headers: getauthenticatedHeaders(),
             body: JSON.stringify(formValuesObject)

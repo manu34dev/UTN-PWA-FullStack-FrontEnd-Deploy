@@ -73,7 +73,7 @@ const ConfirmDeleteProduct = (id) => {
 
 const DeleteProduct = (product_id) => {
 
-    fetch(`http://localhost:3000/api/products/${product_id}`, {
+    fetch(`https://utn-pwa-full-stack-front-end-deploy-8nue.vercel.app/api/products/${product_id}`, {
         method: 'DELETE',
         headers: getauthenticatedHeaders()
     })

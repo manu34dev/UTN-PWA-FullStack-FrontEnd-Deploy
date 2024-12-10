@@ -16,7 +16,7 @@ const ForgotPassword = () => {
 			}
 			const form_values_object = extractFormData(form_fields, form_Values)
 			console.log(form_values_object)
-			const body = await POST('http://localhost:3000/api/auth/forgot-password', 
+			const body = await POST('https://utn-pwa-full-stack-front-end-deploy-8nue.vercel.app/api/auth/forgot-password', 
 			{
 				headers: getunnauthenticatedHeaders(),
 				body: JSON.stringify(form_values_object)

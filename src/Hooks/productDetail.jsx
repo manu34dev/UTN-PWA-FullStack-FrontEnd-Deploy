@@ -9,7 +9,7 @@ const ProductDetails = (product_id) =>{
     const navigate = useNavigate()
     const getProductDetail = async (product_id) =>{
         const product_detail_response = await GET(
-            `http://localhost:3000/api/products/${product_id}`, 
+            `https://utn-pwa-full-stack-front-end-deploy-8nue.vercel.app/api/products/${product_id}`, 
             {
                 headers: getauthenticatedHeaders()
             }
