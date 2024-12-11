@@ -6,7 +6,7 @@ const DeleteProduct = async (product_id) =>{
     /* const product_id = useParams().product_id */
 
     const product_detail_response = await DELETE(
-        `https://utn-pwa-full-stack-front-end-deploy-8nue.vercel.app/api/products/:product_id`, 
+        `https://utn-pwa-full-stack-back-end-deploy.vercel.app/api/products/:product_id`, 
         {
             headers: getauthenticatedHeaders()
         }

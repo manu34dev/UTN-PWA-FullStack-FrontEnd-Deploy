@@ -8,7 +8,7 @@ const Verify = () => {
     const {token} = useParams()
 
     const response = GET (
-        `https://utn-pwa-full-stack-front-end-deploy-8nue.vercel.app/api/auth/verify/${token}`,
+        `https://utn-pwa-full-stack-back-end-deploy.vercel.app/api/auth/verify/${token}`,
         {
             headers: getunnauthenticatedHeaders()
         })

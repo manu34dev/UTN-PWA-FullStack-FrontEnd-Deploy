@@ -19,7 +19,7 @@ const Register = () => {
         const form_HTML = e.target
 
         const body = await POST (
-            'https://utn-pwa-full-stack-front-end-deploy-8nue.vercel.app/api/auth/register', 
+            'https://utn-pwa-full-stack-back-end-deploy.vercel.app/api/auth/register', 
             {
                 headers: getunnauthenticatedHeaders(),
                 body: JSON.stringify(form_values_state)

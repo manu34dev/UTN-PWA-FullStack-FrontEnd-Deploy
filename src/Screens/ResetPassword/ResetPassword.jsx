@@ -14,7 +14,7 @@ const ResetPassword = () => {
         'password': ''
     }
     const form_values_object = extractFormData(form_fields, form_Values)
-    fetch('https://utn-pwa-full-stack-front-end-deploy-8nue.vercel.app/api/auth/reset-password/' + reset_token, {
+    fetch('https://utn-pwa-full-stack-back-end-deploy.vercel.app/api/auth/reset-password/' + reset_token, {
         method: 'PUT',
         headers: getunnauthenticatedHeaders(), /* {
             'Content-Type': 'application/json' 

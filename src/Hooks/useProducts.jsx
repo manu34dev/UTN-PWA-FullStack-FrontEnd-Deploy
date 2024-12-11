@@ -6,7 +6,7 @@ import { getauthenticatedHeaders, GET } from "../fetching/http.fetching";
         const [isLoadingProducts, setIsLoadingProducts] = useState(true)
     
         const getProducts = async () => {
-            const response = await GET('https://utn-pwa-full-stack-front-end-deploy-8nue.vercel.app/api/products', {
+            const response = await GET('https://utn-pwa-full-stack-back-end-deploy.vercel.app/api/products', {
                 headers: getauthenticatedHeaders()
             })
         
