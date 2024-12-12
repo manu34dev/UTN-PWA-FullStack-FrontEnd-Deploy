@@ -53,7 +53,6 @@ const Register = () => {
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                     <div class="text-center"><a class="btn btn-outline-dark mt-auto" href='/login'>Si ya tienes una cuenta has click aqui</a></div>
                     </div>
-                    {/* <span>Si ya tienes cuenta puedes ir a <Link to="/login">Login</Link></span> */}
                 
             </div>
         </nav>
