@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useForm from "../../Hooks/useForm";
 import { POST, getunnauthenticatedHeaders } from "../../fetching/http.fetching";
-const BACK_URL = import.meta.env.VITE_BACK_URL
+import ENVIROMENT from "../../enviroment";
 
 const Register = () => {
     
@@ -20,7 +20,7 @@ const Register = () => {
         const form_HTML = e.target
 
         const body = await POST (
-            `${BACK_URL}/api/auth/register`, 
+            `${ENVIROMENT.URL_BACKEND}/api/auth/register`, 
             {
                 headers: getunnauthenticatedHeaders(),
                 body: JSON.stringify(form_values_state)

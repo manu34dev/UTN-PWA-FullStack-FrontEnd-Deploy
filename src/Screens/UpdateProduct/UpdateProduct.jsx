@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom"
 import { extractFormData } from "../../Utils/extractFormData"
 import { getauthenticatedHeaders } from "../../fetching/http.fetching"
+import ENVIROMENT from "../../enviroment"
 
 const UpdateProduct = () => {
     const {product_id} = useParams()
@@ -20,7 +21,7 @@ const UpdateProduct = () => {
         }
         const formValuesObject = extractFormData(form_fields, form_values)
         formValuesObject.image = image
-        fetch(`https://utn-pwa-full-stack-back-end-deploy.vercel.app/api/products/${product_id}`, {
+        fetch(`${ENVIROMENT.URL_BACKEND}/api/products/${product_id}`, {
             method: 'PUT',
             headers: getauthenticatedHeaders(),
             body: JSON.stringify(formValuesObject)

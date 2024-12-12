@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from 'react-router-dom'
 import { GET, getunnauthenticatedHeaders } from "../../fetching/http.fetching";
+import ENVIROMENT from "../../enviroment";
 
 
 const Verify = () => {
@@ -8,7 +9,7 @@ const Verify = () => {
     const {token} = useParams()
 
     const response = GET (
-        `https://utn-pwa-full-stack-back-end-deploy.vercel.app/api/auth/verify/${token}`,
+        `${ENVIROMENT.URL_BACKEND}/api/auth/verify/${token}`,
         {
             headers: getunnauthenticatedHeaders()
         })

@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { extractFormData } from "../../Utils/extractFormData";
 import { getunnauthenticatedHeaders } from "../../fetching/http.fetching";
+import ENVIROMENT from "../../enviroment";
 
 
 const ResetPassword = () => {
@@ -14,7 +15,7 @@ const ResetPassword = () => {
         'password': ''
     }
     const form_values_object = extractFormData(form_fields, form_Values)
-    fetch('https://utn-pwa-full-stack-back-end-deploy.vercel.app/api/auth/reset-password/' + reset_token, {
+    fetch(`${ENVIROMENT.URL_BACKEND}/api/auth/reset-password/` + reset_token, {
         method: 'PUT',
         headers: getunnauthenticatedHeaders(), /* {
             'Content-Type': 'application/json' 

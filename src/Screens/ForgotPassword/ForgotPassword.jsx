@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { extractFormData } from "../../Utils/extractFormData";
 import { POST, getunnauthenticatedHeaders } from "../../fetching/http.fetching";
+import ENVIROMENT from "../../enviroment";
 
 
 const ForgotPassword = () => {
@@ -16,7 +17,7 @@ const ForgotPassword = () => {
 			}
 			const form_values_object = extractFormData(form_fields, form_Values)
 			console.log(form_values_object)
-			const body = await POST('https://utn-pwa-full-stack-back-end-deploy.vercel.app/api/auth/forgot-password', 
+			const body = await POST(`${ENVIROMENT.URL_BACKEND}/api/auth/forgot-password`, 
 			{
 				headers: getunnauthenticatedHeaders(),
 				body: JSON.stringify(form_values_object)

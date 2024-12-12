@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { getauthenticatedHeaders, POST } from "../../fetching/http.fetching";
 import { extractFormData } from "../../Utils/extractFormData";
+import ENVIROMENT from "../../enviroment";
 
 const CreateProduct = () => {
 
@@ -20,7 +21,7 @@ const CreateProduct = () => {
         }
         const formValuesObject = extractFormData(form_fields, form_values)
         formValuesObject.image = image
-        const response = await POST ('https://utn-pwa-full-stack-back-end-deploy.vercel.app/api/products', {
+        const response = await POST (`${ENVIROMENT.URL_BACKEND}/api/products`, {
             headers: getauthenticatedHeaders(),
             body: JSON.stringify(formValuesObject)
         })
