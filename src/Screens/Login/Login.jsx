@@ -20,7 +20,7 @@ const Login = () => {
 
             const formValuesObject = extractFormData(form_fields, form_values)
             
-            const response = await POST (`https:${BACK_URL}/api/auth/login`, {
+            const response = await POST (`${BACK_URL}/api/auth/login`, {
                 headers: getunnauthenticatedHeaders(),
                 body: JSON.stringify(formValuesObject)
             })
