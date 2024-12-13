@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { extractFormData } from "../../Utils/extractFormData";
 import ENVIROMENT from "../../enviroment";
-import { getunnauthenticatedHeaders } from "../../fetching/http.fetching"; 
+import { getunnauthenticatedHeaders } from "../../fetching/http.fetching";  
 
 
 const ResetPassword = () => {
@@ -17,9 +17,9 @@ const ResetPassword = () => {
     const form_values_object = extractFormData(form_fields, form_Values)
     fetch(`${ENVIROMENT.URL_BACKEND}/api/auth/reset-password/` + reset_token, {
         method: 'PUT',
-        headers: getunnauthenticatedHeaders(),{
-            'Content-Type': 'application/json' //Aca le indicamos al back que lo que enviamos es un JSON
-        },
+        headers: getunnauthenticatedHeaders(), /* {
+            'Content-Type': 'application/json' 
+        }, */
         body: JSON.stringify(form_values_object)
     })
         .then(
