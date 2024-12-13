@@ -18,7 +18,7 @@ const Register = () => {
     const handleSubmitRegisterForm = async (e) => {
         e.preventDefault()
         const form_HTML = e.target
-
+        console.log(`${ENVIROMENT.URL_BACKEND}/api/auth/register`)
         const body = await POST (
             `${ENVIROMENT.URL_BACKEND}/api/auth/register`, 
             {
