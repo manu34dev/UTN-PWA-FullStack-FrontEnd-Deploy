@@ -16,6 +16,7 @@ const ResetPassword = () => {
     const form_fields = {
         'password': ''
     }
+    
     const form_values_object = extractFormData(form_fields, form_Values)
     fetch(`${ENVIROMENT.URL_BACKEND}/api/auth/reset-password/` + reset_token, {
         method: 'PUT',
@@ -26,8 +27,7 @@ const ResetPassword = () => {
         navigate('/login')
     })
         .then(
-            (response) => { 
-                console.log({ response }) 
+            (response) => {  
                 return response.json()
             }
         )
