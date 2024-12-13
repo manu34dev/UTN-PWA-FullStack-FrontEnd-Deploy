@@ -7,7 +7,7 @@ const DeleteProduct = async (product_id) =>{
     /* const product_id = useParams().product_id */
 
     const product_detail_response = await DELETE(
-        `${ENVIROMENT.URL_BACKEND}/api/products/:product_id`, 
+        `${ENVIROMENT.URL_BACKEND}/api/products/${product_id}`, 
         {
             headers: getauthenticatedHeaders()
         }
