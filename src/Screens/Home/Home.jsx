@@ -74,20 +74,7 @@ const ConfirmDeleteProduct = async (id) => {
 
 const DeleteProduct = async (product_id) => {
 
-    console.log("environment: ",
-        `${ENVIROMENT.URL_BACKEND}/api/products/${product_id}`)
-
-    /*fetch(`${ENVIROMENT.URL_BACKEND}/api/products/${product_id}`, {
-        method: 'DELETE',
-        headers: getauthenticatedHeaders()
-    })
-    .then((response) => { 
-    console.log({ response }) 
-    return response.json()
-    })
-    .catch((error) => { console.error(error) })*/
-
-    const product_detail_response = await DELETE(
+    await DELETE(
         `${ENVIROMENT.URL_BACKEND}/api/products/${product_id}`, 
         {
             headers: getauthenticatedHeaders()

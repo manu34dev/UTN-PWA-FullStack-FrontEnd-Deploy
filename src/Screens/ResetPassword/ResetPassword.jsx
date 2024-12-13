@@ -5,70 +5,64 @@ import {PUT, getunnauthenticatedHeaders } from "../../fetching/http.fetching";
 import ENVIROMENT from "../../enviroment";
 
 
-const ResetPassword = () => {
+const ResetPassword = async () => {
     const navigate = useNavigate()
 
-    const reset_token = useParams()
+    const { reset_token } = useParams()
+    console.log({reset_token})
     const handleSubmitResetForm = (e) => {
-    e.preventDefault()
-    const form_HTML = e.target
-    const form_Values = new FormData(form_HTML)
-    const form_fields = {
-        'password': ''
-    }
+        e.preventDefault()
+        const form_HTML = e.target
+        const form_Values = new FormData(form_HTML)
+        const form_fields = {
+            'password': ''
+        }
     
-    const form_values_object = extractFormData(form_fields, form_Values)
-    fetch(`${ENVIROMENT.URL_BACKEND}/api/auth/reset-password/` + reset_token, {
-        method: 'PUT',
-        headers: getunnauthenticatedHeaders(), /* {
-            'Content-Type': 'application/json' 
-        }, */
-        body: JSON.stringify(form_values_object)
-    })
-        .then(
-            (response) => {  
-                return response.json()
+        const form_values_object = extractFormData(form_fields, form_Values)
+        
+        PUT(
+            `${ENVIROMENT.URL_BACKEND}/api/auth/reset-password/${reset_token}`, 
+            {
+                headers: getauthenticatedHeaders(),
+                body: JSON.stringify(form_values_object)
             }
         )
-        .catch(
-            (error) => { console.error(error) }
-        )
+        .then((response) => { console.log({ response }) })
+        .catch((error) => { console.error(error) })
     }
     navigate('/login')
 
-
-
-    return (
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container px-4 px-lg-5">
-            <div>
-                <a class="navbar-brand">Restablecer contraseña</a>
-            </div>
-            <div>
-                <p>Completa el formulario con la nueva contraseña para restablecerla.</p>
-            </div>
-                <form onSubmit={handleSubmitResetForm}>
+return (
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container px-4 px-lg-5">
+                <div>
+                    <a class="navbar-brand">Restablecer contraseña</a>
+                </div>
+                <div>
+                    <p>Completa el formulario con la nueva contraseña para restablecerla.</p>
+                </div>
+                    <form onSubmit={handleSubmitResetForm}>
+                        <div>
+                                <label htmlFor='password'>Ingrese su nueva contraseña:</label>
+                                <input name='password' id='password' placeholder='contraseña' />
+                        </div>
+                                <button class="btn btn-outline-dark" type="submit">Restablecer contraseña</button>
+                    </form>
                     <div>
-                            <label htmlFor='password'>Ingrese su nueva contraseña:</label>
-                            <input name='password' id='password' placeholder='contraseña' />
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href='/login'>Si recuerdas tu contraseña has click aqui</a></div>
+                        </div>
+                        
                     </div>
-                            <button class="btn btn-outline-dark" type="submit">Restablecer contraseña</button>
-                </form>
-                <div>
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href='/login'>Si recuerdas tu contraseña has click aqui</a></div>
+                    <div>
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href='/register'>Si aun no tienes cuenta puedes Registrarte aqui</a></div>
+                        </div>
                     </div>
-                    
-                </div>
-                <div>
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href='/register'>Si aun no tienes cuenta puedes Registrarte aqui</a></div>
-                    </div>
-                </div>
-        </div>
-    </nav>
-</body>
+            </div>
+        </nav>
+    </body>
   )
 }
 export default ResetPassword;
