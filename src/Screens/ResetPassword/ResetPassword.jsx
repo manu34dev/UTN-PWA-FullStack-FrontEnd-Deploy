@@ -24,7 +24,6 @@ const ResetPassword = () => {
             'Content-Type': 'application/json' 
         }, */
         body: JSON.stringify(form_values_object)
-        navigate('/login')
     })
         .then(
             (response) => {  
@@ -35,6 +34,7 @@ const ResetPassword = () => {
             (error) => { console.error(error) }
         )
     }
+    navigate('/login')
 
 
 
