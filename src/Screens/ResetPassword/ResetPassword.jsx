@@ -10,7 +10,7 @@ const ResetPassword = async () => {
 
     const { reset_token } = useParams()
     console.log({reset_token})
-    const handleSubmitResetForm = (e) => {
+    const handleSubmitResetForm = async (e) => {
         e.preventDefault()
         const form_HTML = e.target
         const form_Values = new FormData(form_HTML)
@@ -20,10 +20,10 @@ const ResetPassword = async () => {
     
         const form_values_object = extractFormData(form_fields, form_Values)
         
-        PUT(
+        await PUT(
             `${ENVIROMENT.URL_BACKEND}/api/auth/reset-password/${reset_token}`, 
             {
-                headers: getauthenticatedHeaders(),
+                headers: getunnauthenticatedHeaders(),
                 body: JSON.stringify(form_values_object)
             }
         )
