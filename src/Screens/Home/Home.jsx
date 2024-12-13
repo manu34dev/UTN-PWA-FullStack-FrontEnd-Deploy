@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 /* import { Link } from "react-router-dom"; */
 import useProducts from "../../Hooks/useProducts";
-import { getauthenticatedHeaders } from "../../fetching/http.fetching"
+import { DELETE, getauthenticatedHeaders } from "../../fetching/http.fetching"
+import ENVIROMENT from "../../enviroment";
 
 
 const Home = () => {
@@ -63,17 +64,20 @@ const ProductsList = ({products}) => {
     )
 }
 
-const ConfirmDeleteProduct = (id) => {
+const ConfirmDeleteProduct = async (id) => {
     const confirmResult = window.confirm("Confirma que desea eliminar el producto?")
 
     if(confirmResult) {
-        DeleteProduct(id)
+        await DeleteProduct(id)
     }
 }
 
-const DeleteProduct = (product_id) => {
+const DeleteProduct = async (product_id) => {
 
-    fetch(`${ENVIROMENT.URL_BACKEND}/api/products/${product_id}`, {
+    console.log("environment: ",
+        `${ENVIROMENT.URL_BACKEND}/api/products/${product_id}`)
+
+    /*fetch(`${ENVIROMENT.URL_BACKEND}/api/products/${product_id}`, {
         method: 'DELETE',
         headers: getauthenticatedHeaders()
     })
@@ -81,7 +85,19 @@ const DeleteProduct = (product_id) => {
     console.log({ response }) 
     return response.json()
     })
-    .catch((error) => { console.error(error) })
+    .catch((error) => { console.error(error) })*/
+
+    const product_detail_response = await DELETE(
+        `${ENVIROMENT.URL_BACKEND}/api/products/${product_id}`, 
+        {
+            headers: getauthenticatedHeaders()
+        }
+    )
+    .then((response) => { 
+        console.log({ response }) 
+        return response.json()
+        })
+        .catch((error) => { console.error(error) })
 }
 
 const Product = ({title, price, image, id}) => {

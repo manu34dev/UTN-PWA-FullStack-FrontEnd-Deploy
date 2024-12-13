@@ -1,11 +1,13 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { extractFormData } from "../../Utils/extractFormData";
-import { getunnauthenticatedHeaders } from "../../fetching/http.fetching";
+import {PUT, getunnauthenticatedHeaders } from "../../fetching/http.fetching";
 import ENVIROMENT from "../../enviroment";
 
 
 const ResetPassword = () => {
+    const navigate = useNavigate()
+
     const reset_token = useParams()
     const handleSubmitResetForm = (e) => {
     e.preventDefault()
@@ -21,6 +23,7 @@ const ResetPassword = () => {
             'Content-Type': 'application/json' 
         }, */
         body: JSON.stringify(form_values_object)
+        navigate('/login')
     })
         .then(
             (response) => { 
