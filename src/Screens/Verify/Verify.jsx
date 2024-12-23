@@ -22,7 +22,7 @@ const Verify = () => {
                 <a class="navbar-brand" href="#!">Bienvenido</a>
                 <div>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    <a class="btn btn-outline-dark mt-auto" href='/home'>Iniciar Sesion</a>
+                    <a class="btn btn-outline-dark mt-auto" href='/login'>Iniciar Sesion</a>
                     </ul>
                 </div>
             </div>

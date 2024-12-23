@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-/* import { Link } from "react-router-dom"; */
 import useProducts from "../../Hooks/useProducts";
 import { DELETE, getauthenticatedHeaders } from "../../fetching/http.fetching"
 import ENVIROMENT from "../../enviroment";
