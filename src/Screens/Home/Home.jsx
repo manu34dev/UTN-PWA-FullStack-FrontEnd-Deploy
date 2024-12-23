@@ -41,7 +41,8 @@ const Home = () => {
             }
         </div>
         <footer class="py-5 bg-dark">
-            <div class="container" ><p class="m-0 text-center text-white">Copyright &copy;  <a href="https://sceu.frba.utn.edu.ar/presencial/">Proyecto UTN fullstack</a></p></div>
+        <div class="container" ><p class="m-0 text-center text-white">Copyright &copy;  <a href="https://sceu.frba.utn.edu.ar/presencial/">Proyecto UTN fullstack</a></p></div>
+        <div class="container"><p class="m-0 text-center text-white">Powered by <a href="https://vercel.com">Vercel</a></p></div>
         </footer>
     </body>
     )
