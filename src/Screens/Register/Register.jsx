@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useForm from "../../Hooks/useForm";
 import { POST, getunnauthenticatedHeaders } from "../../fetching/http.fetching";
@@ -7,6 +7,8 @@ import ENVIROMENT from "../../enviroment";
 const Register = () => {
     
     const navigate = useNavigate()
+
+    const [showPassword, setShowPassword] = useState(false);
 
     const form_fields = {
         'name': '',
@@ -71,6 +73,10 @@ const Register = () => {
             }
         }
 
+        const togglePasswordVisibility = () => {
+            setShowPassword(!showPassword);
+        };
+
     
     return (
     <body>
@@ -80,7 +86,7 @@ const Register = () => {
                     <form onSubmit={handleSubmitRegisterForm}>
                         <div>
                             <label htmlFor="name">Ingrese su nombre </label>
-                            <input name="name" id="name" placeholder="Guadalupe Gamarra" required="true"  onChange={handleChangeInputValue} />
+                            <input name="name" id="name" placeholder="Marcos Molero" required="true"  onChange={handleChangeInputValue} />
                         </div>
                         <div>
                             <label htmlFor="email">Ingrese su e-mail </label>
@@ -88,7 +94,16 @@ const Register = () => {
                         </div>
                         <div>
                             <label htmlFor="password">Ingrese su contraseña </label>
-                            <input type="password" name="password" id="password" placeholder="escriba su contraseña" required="true" onBlur={onBlurPassword} onChange={handleChangeInputValue}/>
+                            <input type={showPassword ? "text" : "password"} name="password" id="password" placeholder="escriba su contraseña" required="true" onBlur={onBlurPassword} onChange={handleChangeInputValue}/>
+                            <div className="input-group-append">
+                                    <button 
+                                        type="button" 
+                                        className="btn btn-outline-secondary"
+                                        onClick={togglePasswordVisibility}
+                                    >
+                                        {showPassword ? 'Ocultar' : 'Mostrar'} Contraseña
+                                    </button>
+                                </div>
                         </div>
                         <button class="btn btn-outline-dark" type="submit">Registrarse</button>
                     </form>
