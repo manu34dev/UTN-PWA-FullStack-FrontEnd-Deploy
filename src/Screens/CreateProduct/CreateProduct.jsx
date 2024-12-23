@@ -1,10 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getauthenticatedHeaders, POST } from "../../fetching/http.fetching";
 import { extractFormData } from "../../Utils/extractFormData";
 import ENVIROMENT from "../../enviroment";
 
 const CreateProduct = () => {
+    const navigate = useNavigate()
 
     const [image, setImage] = React.useState('')
     const handleSubmitNewProduct = async(e) => {
@@ -49,9 +50,9 @@ const CreateProduct = () => {
         const response = await POST (`${ENVIROMENT.URL_BACKEND}/api/products`, {
             headers: getauthenticatedHeaders(),
             body: JSON.stringify(formValuesObject)
+            
         })
-        console.log(response)
-        
+        navigate('/home')
         }
         catch (error) {
             console.error('Error en el envío del formulario:', error.message);
