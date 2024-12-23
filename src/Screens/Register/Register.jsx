@@ -30,6 +30,48 @@ const Register = () => {
         
         navigate('/login')
     }
+
+    const onBlurEmail = (e) =>
+        {
+            e.preventDefault()
+            const value = e.target.value
+    
+            const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+            const isValid = pattern.test(value);
+    
+            const errorContainer = document.getElementById("error-msg");
+    
+            if(!isValid) {
+                errorContainer.style.visibility = "visible";
+                errorContainer.style.color = "red";
+                errorContainer.innerText = "Debe ingresar un email"
+            }
+            else {
+                errorContainer.style.visibility = "hidden";
+                errorContainer.style.color = "red";
+                errorContainer.innerText = ""
+            }
+        }
+
+        const onBlurPassword = (e) => {
+            e.preventDefault()
+            const value = e.target.value
+    
+            const errorContainer = document.getElementById("error-msg");
+    
+            if(!isNaN(value)) {
+                errorContainer.style.visibility = "visible";
+                errorContainer.style.color = "red";
+                errorContainer.innerText = "Debe ingresar un password"
+            }
+            else {
+                errorContainer.style.visibility = "hidden";
+                errorContainer.style.color = "red";
+                errorContainer.innerText = ""
+            }
+        }
+
+    
     return (
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -38,15 +80,15 @@ const Register = () => {
                     <form onSubmit={handleSubmitRegisterForm}>
                         <div>
                             <label htmlFor="name">Ingrese su nombre </label>
-                            <input name="name" id="name" placeholder="Guadalupe Gamarra" onChange={handleChangeInputValue} />
+                            <input name="name" id="name" placeholder="Guadalupe Gamarra" required="true"  onChange={handleChangeInputValue} />
                         </div>
                         <div>
                             <label htmlFor="email">Ingrese su e-mail </label>
-                            <input name="email" id="email" placeholder="pepe@gmail.com" onChange={handleChangeInputValue} />
+                            <input name="email" id="email" placeholder="pepe@gmail.com" required="true" onBlur={onBlurEmail} onChange={handleChangeInputValue} />
                         </div>
                         <div>
                             <label htmlFor="password">Ingrese su contraseña </label>
-                            <input type="password" name="password" id="password" placeholder="escriba su contraseña" onChange={handleChangeInputValue}/>
+                            <input type="password" name="password" id="password" placeholder="escriba su contraseña" required="true" onBlur={onBlurPassword} onChange={handleChangeInputValue}/>
                         </div>
                         <button class="btn btn-outline-dark" type="submit">Registrarse</button>
                     </form>

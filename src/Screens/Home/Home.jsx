@@ -6,6 +6,7 @@ import ENVIROMENT from "../../enviroment";
 
 
 const Home = () => {
+    /* const seller_id = sessionStorage.getItem('user_id') */
     const user_info = JSON.parse(sessionStorage.getItem('user_info'))
     const {products, isLoadingProducts} = useProducts()
     console.log(products)
@@ -41,7 +42,7 @@ const Home = () => {
             }
         </div>
         <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Proyecto UTN fullstack</p></div>
+            <div class="container" ><p class="m-0 text-center text-white">Copyright &copy;  <a href="https://sceu.frba.utn.edu.ar/presencial/">Proyecto UTN fullstack</a></p></div>
         </footer>
     </body>
     )
@@ -103,15 +104,29 @@ const Product = ({title, price, image, id}) => {
                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center"><a class="btn btn-outline-dark mt-auto" href={'/product/' + id}>Ir a detalle</a></div>
                 </div>
-                {/* <Link to={'/product/' + id}>Ir a detalle</Link> */}
-                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href={'/product/' + id + '/edit'}>Editar producto</a></div>
-                </div>
-                {/* <Link to={'/product/' + id + '/edit'}>Editar producto</Link> */}
-                
-                <button onClick={() => ConfirmDeleteProduct(id) }>Eliminar el producto</button>
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center">
+                                <a class="btn btn-outline-dark mt-auto" href={'/product/' + id + '/edit'}>Editar producto</a>
+                            </div>
+                        </div>
+                        <button onClick={() => ConfirmDeleteProduct(id)} className="btn btn-outline-danger">
+                            Eliminar el producto
+                        </button>
             </div>
         </div>
     )
 }
 export default Home;
+
+/* { seller_id && (
+    <>
+        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+            <div class="text-center">
+                <a class="btn btn-outline-dark mt-auto" href={'/product/' + id + '/edit'}>Editar producto</a>
+            </div>
+        </div>
+        <button onClick={() => ConfirmDeleteProduct(id)} className="btn btn-outline-danger">
+            Eliminar el producto
+        </button>
+    </>
+)} */

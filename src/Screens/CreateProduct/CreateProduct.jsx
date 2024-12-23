@@ -21,6 +21,31 @@ const CreateProduct = () => {
         }
         const formValuesObject = extractFormData(form_fields, form_values)
         formValuesObject.image = image
+
+        if (!formValuesObject.title || formValuesObject.title.trim() === '') {
+            throw new Error('El título es obligatorio.');
+        }
+
+        if (!formValuesObject.description || formValuesObject.description.trim() === '') {
+            throw new Error('La descripción es obligatoria.');
+        }
+
+        if (!formValuesObject.price || isNaN(formValuesObject.price) || formValuesObject.price <= 0) {
+            throw new Error('El precio debe ser un número válido mayor que 0.');
+        }
+
+        if (!formValuesObject.stock || isNaN(formValuesObject.stock) || formValuesObject.stock < 0) {
+            throw new Error('El stock debe ser un número válido mayor o igual a 0.');
+        }
+
+        if (!formValuesObject.category || formValuesObject.category.trim() === '') {
+            throw new Error('La categoría es obligatoria.');
+        }
+
+        if (!image) {
+            throw new Error('La imagen es obligatoria.');
+        }
+
         const response = await POST (`${ENVIROMENT.URL_BACKEND}/api/products`, {
             headers: getauthenticatedHeaders(),
             body: JSON.stringify(formValuesObject)
@@ -29,9 +54,10 @@ const CreateProduct = () => {
         
         }
         catch (error) {
-            console.log(error)
+            console.error('Error en el envío del formulario:', error.message);
         }
     }
+
 
     const handleChangeFile = (e) => {
         const file_found = e.target.files[0]
