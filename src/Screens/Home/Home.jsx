@@ -5,9 +5,9 @@ import ENVIROMENT from "../../enviroment";
 
 
 const Home = () => {
-    /* const seller_id = sessionStorage.getItem('user_id') */
     const user_info = JSON.parse(sessionStorage.getItem('user_info'))
     const {products, isLoadingProducts} = useProducts()
+    console.log(user_info)
     console.log(products)
 
     return (
@@ -37,7 +37,7 @@ const Home = () => {
         {
             isLoadingProducts 
             ? <span>Cargando....</span>
-            : <ProductsList products={products}/>
+            : <ProductsList products={products} user_id={user_info.id}/>
             }
         </div>
         <footer class="py-5 bg-dark">
@@ -48,13 +48,14 @@ const Home = () => {
     )
 }
 
-const ProductsList = ({products}) => {
+const ProductsList = ({products, user_id}) => {
     return (
     <body>
         <div class="container px-4 px-lg-5 mt-5">
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             {    
                 products.map(product => {
+                    product.user_id = user_id
                     return <Product key={product.id} {...product} />
                 })
             }
@@ -83,11 +84,11 @@ const DeleteProduct = async (product_id) => {
     .then((response) => { 
         console.log({ response }) 
         return response.json()
-        })
-        .catch((error) => { console.error(error) })
+    })
+    .catch((error) => { console.error(error) })
 }
 
-const Product = ({title, price, image, id}) => {
+const Product = ({title, price, image, id, seller_id, user_id}) => {
     return (
         
         <div class="col mb-5">
@@ -102,29 +103,22 @@ const Product = ({title, price, image, id}) => {
                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center"><a class="btn btn-outline-dark mt-auto" href={'/product/' + id}>Ir a detalle</a></div>
                 </div>
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center">
-                                <a class="btn btn-outline-dark mt-auto" href={'/product/' + id + '/edit'}>Editar producto</a>
-                            </div>
-                        </div>
-                        <button onClick={() => ConfirmDeleteProduct(id)} className="btn btn-outline-danger">
-                            Eliminar el producto
-                        </button>
+                        
+                        { seller_id == user_id
+                            && 
+                            <>
+                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                    <div class="text-center">
+                                        <a class="btn btn-outline-dark mt-auto" href={'/product/' + id + '/edit'}>Editar producto</a>
+                                    </div>
+                                </div>
+                                <button onClick={() => ConfirmDeleteProduct(id)} className="btn btn-outline-danger">
+                                    Eliminar el producto
+                                </button>
+                            </>
+                        }
             </div>
         </div>
     )
 }
 export default Home;
-
-/* { seller_id && (
-    <>
-        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <div class="text-center">
-                <a class="btn btn-outline-dark mt-auto" href={'/product/' + id + '/edit'}>Editar producto</a>
-            </div>
-        </div>
-        <button onClick={() => ConfirmDeleteProduct(id)} className="btn btn-outline-danger">
-            Eliminar el producto
-        </button>
-    </>
-)} */
