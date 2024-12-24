@@ -1,9 +1,10 @@
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { extractFormData } from "../../Utils/extractFormData"
 import { getauthenticatedHeaders } from "../../fetching/http.fetching"
 import ENVIROMENT from "../../enviroment"
 
 const UpdateProduct = () => {
+    const navigate = useNavigate()
     const {product_id} = useParams()
 
     console.log(product_id)
@@ -20,7 +21,6 @@ const UpdateProduct = () => {
             category: '',
         }
         const formValuesObject = extractFormData(form_fields, form_values)
-        formValuesObject.image = image
         fetch(`${ENVIROMENT.URL_BACKEND}/api/products/${product_id}`, {
             method: 'PUT',
             headers: getauthenticatedHeaders(),
@@ -31,6 +31,7 @@ const UpdateProduct = () => {
                 return response.json()
             }
         )
+        navigate('/home')
         .catch(
             (error) => { console.error(error) }
         )
@@ -58,16 +59,8 @@ const UpdateProduct = () => {
                             <label htmlFor="stock">ingrese nuevo stock</label>
                             <input name="stock" type="text" id="stock"/>
                         </div>
-                        {/* <div>
-                            {
-                            image && 
-                                <img src={image} alt={image} height="100px" width="100px"/>
-                            }
-                            <label htmlFor="image">Seleccione su imagen</label>
-                            <input name="image" id="image" type="file" onChange={handleChangeFile} accept="image/*"/>
-                        </div> */}
                         <div>
-                            <label htmlFor="category">ingrese nueva</label>
+                            <label htmlFor="category">ingrese nueva categoria</label>
                             <input name="category" type="text" id="category"/>
                         </div>
                         <br />

@@ -92,9 +92,7 @@ const Product = ({title, price, image, id}) => {
         
         <div class="col mb-5">
             <div class="card h-100">
-                {/*> product image */}
                 <img class="card-img-top" src={image} alt={title} width={'50'} />
-                {/* product detail */}
                 <div class="card-body p-4">
                     <div class="text-center">
                         <h5 class="fw-bolder">{title}</h5>
